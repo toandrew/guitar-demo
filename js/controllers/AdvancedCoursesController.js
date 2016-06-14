@@ -2,7 +2,7 @@ app.controller('AdvancedCoursesController', function($scope, advancedCoursesData
     advancedCoursesData.getAllCourses()
         .$promise
         .then(function(data) {
-            $scope.allCoursesData = data;
+            $scope.allAdvancedCoursesData = data;
         }, function(error) {
             $log.error(error);
         })

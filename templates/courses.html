@@ -1,13 +1,9 @@
 <div class="all-courses">
 	<h1>基础课程</h1>
 	<ul>
-		<li ng-repeat="ad in allCoursesData.ads" class="well">
+		<li ng-repeat="info in allBasicCoursesData.info" class="well">
 			<a href="#/ads/{{ad.id}}">
-				<h1>{{ad.title}}</h1>
-				<div><strong>Text:</strong> {{ad.text}}</div>
-				<div><strong>Town:</strong> {{ad.townName}}</div>
-				<div><strong>Category:</strong> {{ad.categoryName}}</div>
-				<div><strong>Status:</strong> {{ad.status}}</div>
+				<div><strong>{{info.title}}: </strong> {{info.desc}}</div>
 			</a>
 		</li>
 	</ul>
@@ -15,13 +11,9 @@
 <div class="all-courses">
 	<h1>技巧专题</h1>
 	<ul>
-		<li ng-repeat="ad in allCoursesData.ads" class="well">
+		<li ng-repeat="info in allAdvancedCoursesData.info" class="well">
 			<a href="#/ads/{{ad.id}}">
-				<h1>{{ad.title}}</h1>
-				<div><strong>Text:</strong> {{ad.text}}</div>
-				<div><strong>Town:</strong> {{ad.townName}}</div>
-				<div><strong>Category:</strong> {{ad.categoryName}}</div>
-				<div><strong>Status:</strong> {{ad.status}}</div>
+				<div><strong>{{info.title}}</strong> {{info.desc}}</div>
 			</a>
 		</li>
 	</ul>

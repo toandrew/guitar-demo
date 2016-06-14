@@ -3,7 +3,7 @@ app.controller('QupuController', function($scope, $location, $log, qupuData) {
 		adsData.create(ad)
 			.$promise
 			.then(function (data) {
-				alert('Ad added: ' + data);
+				$scope.hotQupuData = data;
 				//$location.path('#/allAds');
 			},
 			function (error) {
