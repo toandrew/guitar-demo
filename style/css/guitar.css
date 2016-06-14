@@ -129,33 +129,33 @@ body {
     display: block;
 }
 
-.hot-guitar {
+.all-courses {
     margin-top: 0.3rem;
 }
 
-.hot-guitar h1 {
+.all-courses h1 {
     border-left: 0.12rem solid #D43E33;
     padding: 0 0.2rem;
     margin-left: 0.2rem;
     font-size: 0.3rem;
 }
 
-.hot-guitar li {
+.all-courses li {
     margin-left: 0.2rem;
     border-bottom: 1px solid #CCCCCC;
     padding: 0.2rem 0;
     background: #FFFFFF;
 }
 
-.hot-guitar li:active {
+.all-courses li:active {
     background: #f1f1f1;
 }
 
-.hot-guitar li a:active {
+.all-courses li a:active {
     text-decoration: none;
 }
 
-.hot-guitar li:after {
+.all-courses li:after {
     content: "";
     clear: both;
     display: block;
@@ -304,13 +304,13 @@ body {
     color: #FFFFFF;
 }
 
-.hot-guitar .buy-music {
+.all-courses .buy-music {
     width: 7.5rem;
     height: 3rem;
     margin-top: 0.3rem;
 }
 
-.hot-guitar .buy-music img {
+.all-courses .buy-music img {
     width: 7rem;
     height: 3rem;
     margin: 0 auto;
