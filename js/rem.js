@@ -12,7 +12,7 @@
 
     win.addEventListener('resize', function() {
         clearTimeout(tid);
-        tid = setTimeout(refreshRem, 300);
+        tid = setTimeout(refreshRem, 100);
     }, false);
     win.addEventListener('pageshow', function(e) {
         if (e.persisted) {

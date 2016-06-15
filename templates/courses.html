@@ -2,10 +2,11 @@
     <h1>基础课程</h1>
     <ul>
         <li ng-repeat="info in allBasicCoursesData.info" class="well">
-            <a href="#/courses/{{info.id}}">
+            <a href="#/course/{{info.id}}">
                 <div class="hot-img-l"> <img src={{info.img}} alt={{info.title}}></div>
                 <div class="hot-text-r">
-                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <h2>{{info.title}}</h2>
+                    <p class="course-desc">简介：{{info.desc}}</p>
                     <p>
                     	<span class="name">xxx</span>
                     	<span class="number">9527</span>
@@ -19,14 +20,17 @@
     <h1>技巧专题</h1>
     <ul>
         <li ng-repeat="info in allAdvancedCoursesData.info" class="well">
+            <a href="#/course/{{info.id}}">
                 <div class="hot-img-l"> <img src={{info.img}} alt={{info.title}}></div>
                 <div class="hot-text-r">
                     <h2>{{info.desc}}</h2>
+                    <p class="course-desc">简介：{{info.desc}}</p>
                     <p>
                     	<span class="name">xxx</span>
                     	<span class="number">9528</span>
                     </p>
                 </div>
+            </a>
         </li>
     </ul>
 </div>

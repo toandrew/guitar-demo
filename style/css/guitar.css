@@ -63,7 +63,8 @@ body {
 }
 
 #search {
-    float: right;
+    float: left;
+    margin-left: 2rem;
 }
 
 .nav a {
@@ -78,13 +79,17 @@ body {
     color: #d43e33;
 }
 
+
 /* logo */
+
 .nav li:last-child img {
     width: 0.6rem;
     margin-top: 0.2rem;
 }
 
+
 /* search */
+
 .nav li:first-child img {
     width: 0.9rem;
     margin-top: 0.32rem;
@@ -905,6 +910,7 @@ body {
     display: none;
 }
 
+/** demo */
 #s_keyword {
     width: 60%;
     height: 0.5rem;
@@ -934,4 +940,22 @@ body {
     -webkit-border-radius: 0;
     padding: 0;
     border: 0;
+}
+
+.qupu-type {
+    font-size: 0.2rem;
+    margin-top: 0 !important;
+    padding: 0;
+    border: 0;
+}
+
+.course-desc {
+    font-size: 0.2rem;
+    margin-top: 0 !important;
+    padding: 0;
+    border: 0;
+}
+
+span.name {
+    padding: 0;
 }

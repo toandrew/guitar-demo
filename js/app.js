@@ -9,12 +9,17 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute'])
             templateUrl: 'templates/courses.html',
             controller: 'CoursesController'
         });
-        $routeProvider.when('/qupu', {
-            templateUrl: 'templates/qupu.html',
-            controller: 'QupuController'
+        $routeProvider.when('/qupus', {
+            templateUrl: 'templates/qupus.html',
+            controller: 'QupusController'
         });
         $routeProvider.when('/search', {
             templateUrl: 'templates/search.html',
             controller: 'SearchController'
         });
+
+        $routeProvider.when('/course', {
+            templateUrl: 'templates/course-run.html',
+            controller: 'CourseRunningController'
+        });        
     });

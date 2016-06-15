@@ -1,9 +1,9 @@
-app.controller('QupuController', function($scope, $location, $log, qupuData) {
-    qupuData.getHotQupu()
+app.controller('QupusController', function($scope, $location, $log, qupusData) {
+    qupusData.getHotQupus()
         .$promise
         .then(function(data) {
             console.log('data:' + data);
-            $scope.qupuData = data;
+            $scope.hotQupusData = data;
         }, function(error) {
             $log.error(error);
         });

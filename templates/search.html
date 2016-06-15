@@ -9,14 +9,17 @@
     <h1>猜你喜欢</h1>
     <ul>
         <li ng-repeat="info in searchHintData.info" class="well">
+            <a href="#/qupu/{{info.id}}">
                 <div class="hot-img-l"> <img src={{info.detail.img}} alt={{info.title}}></div>
                 <div class="hot-text-r">
-                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <h2>{{info.title}}</h2>
+                    <p class="qupu-type">难易度：{{info.type}}</p>
                     <p>
                     	<span class="name">xxx</span>
                     	<span class="number">001</span>
                     </p>
                 </div>
+            </a>
         </li>
     </ul>
 </div>
@@ -25,14 +28,17 @@
     <h1>搜索结果</h1>
     <ul>
         <li ng-repeat="info in searchResultData.info" class="well">
+            <a href="#/qupu/{{info.id}}">
                 <div class="hot-img-l"> <img src={{info.detail.img}} alt={{info.title}}></div>
                 <div class="hot-text-r">
-                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <h2>{{info.desc}}</h2>
+                    <p class="qupu-type">难易度：{{info.type}}</p>
                     <p>
                     	<span class="name">xxx</span>
                     	<span class="number">001</span>
                     </p>
                 </div>
+            </a>
         </li>
     </ul>
 </div>
