@@ -62,6 +62,10 @@ body {
     line-height: 1rem;
 }
 
+#search {
+    float: right;
+}
+
 .nav a {
     color: #666666;
 }
@@ -345,7 +349,7 @@ body {
 
 .search-box {
     width: 90%;
-    margin: 0.4rem 5%;
+    margin: 0 auto;
 }
 
 .search-box:after {
@@ -899,4 +903,35 @@ body {
     -webkit-opacity: 0.5;
     z-index: 98;
     display: none;
+}
+
+#s_keyword {
+    width: 60%;
+    height: 0.5rem;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 0.2rem BlinkMacSystemFont;
+}
+
+#s_btn {
+    width: 1.2rem;
+    height: 0.5rem;
+    color: white;
+    font-size: 0.2rem;
+    letter-spacing: 1px;
+    background: #3385ff;
+    border-bottom: 1px solid #2d78f4;
+    outline: medium;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    padding: 0;
+    border: 0;
 }
