@@ -1,11 +1,12 @@
-;(function(win) {
+;
+(function(win) {
     var doc = win.document;
     var docEl = doc.documentElement;
     var tid;
 
     function refreshRem() {
         var width = docEl.getBoundingClientRect().width;
-	     var rem = width / (750/100);  
+        var rem = width / (750 / 100);
         docEl.style.fontSize = rem + 'px';
     }
 

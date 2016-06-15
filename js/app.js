@@ -1,8 +1,13 @@
 var app = angular.module('myApp', ['ngResource', 'ngRoute'])
     .config(function($routeProvider) {
+    		$routeProvider.when('', {
+    			  templateUrl: 'templates/courses.html',
+            controller: 'CoursesController'
+    		});
+
         $routeProvider.when('/courses', {
             templateUrl: 'templates/courses.html',
-            controller: 'BasicCoursesController'
+            controller: 'CoursesController'
         });
         $routeProvider.when('/qupu', {
             templateUrl: 'templates/qupu.html',

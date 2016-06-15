@@ -1,14 +1,39 @@
-<div class="container">
-	<h1>New Ad</h1>
-	<form name="newAdForm">
-		<fieldset>
-			<label for="adTitle">Ad title:</label>
-			<input type="text" required ng-model="ad.Title" />
-			<br />
-			<label for="adText">Ad text:</label>
-			<input type="text" required ng-model="ad.Text" />
-		</fieldset>
-		<button type="button" class="btn btn-default" ng-click="addAd(ad)">Add Ad</button>
-		<button type="button" class="btn btn-default" ng-click="cancelAdd()">Cancel</button>
-	</form>
+<div class="search-box">
+    <h6>曲谱库</h6>
+    <form name="search" ng-submit="searchQupu()" method="get">
+        <input type="text" class="" name="keyword" ng-model="searchKeyword" placeholder="搜索曲谱" />
+        <input type="submit" class="btn-searkch" value="搜索" />
+    </form>
+</div>
+
+<div class="all-courses" ng-show="showHint">
+    <h1>猜你喜欢</h1>
+    <ul>
+        <li ng-repeat="info in searchHintData.info" class="well">
+                <div class="hot-img-l"> <img src={{info.detail.img}} alt={{info.title}}></div>
+                <div class="hot-text-r">
+                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <p>
+                    	<span class="name">xxx</span>
+                    	<span class="number">001</span>
+                    </p>
+                </div>
+        </li>
+    </ul>
+</div>
+
+<div class="all-courses" ng-show="!showHint">
+    <h1>搜索结果</h1>
+    <ul>
+        <li ng-repeat="info in searchResultData.info" class="well">
+                <div class="hot-img-l"> <img src={{info.detail.img}} alt={{info.title}}></div>
+                <div class="hot-text-r">
+                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <p>
+                    	<span class="name">xxx</span>
+                    	<span class="number">001</span>
+                    </p>
+                </div>
+        </li>
+    </ul>
 </div>

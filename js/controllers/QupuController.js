@@ -1,17 +1,11 @@
 app.controller('QupuController', function($scope, $location, $log, qupuData) {
-	$scope.addAd = function (ad) {
-		adsData.create(ad)
-			.$promise
-			.then(function (data) {
-				$scope.hotQupuData = data;
-				//$location.path('#/allAds');
-			},
-			function (error) {
-				$log.error(error);
-			});
-	}
+    qupuData.getHotQupu()
+        .$promise
+        .then(function(data) {
+            console.log('data:' + data);
+            $scope.qupuData = data;
+        }, function(error) {
+            $log.error(error);
+        });
 
-	$scope.cancelAdd = function () {
-		
-	}
 });

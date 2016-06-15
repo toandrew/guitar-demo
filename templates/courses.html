@@ -1,20 +1,32 @@
 <div class="all-courses">
-	<h1>基础课程</h1>
-	<ul>
-		<li ng-repeat="info in allBasicCoursesData.info" class="well">
-			<a href="#/ads/{{ad.id}}">
-				<div><strong>{{info.title}}: </strong> {{info.desc}}</div>
-			</a>
-		</li>
-	</ul>
+    <h1>基础课程</h1>
+    <ul>
+        <li ng-repeat="info in allBasicCoursesData.info" class="well">
+            <a href="#/courses/{{info.id}}">
+                <div class="hot-img-l"> <img src={{info.img}} alt={{info.title}}></div>
+                <div class="hot-text-r">
+                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <p>
+                    	<span class="name">xxx</span>
+                    	<span class="number">9527</span>
+                    </p>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
 <div class="all-courses">
-	<h1>技巧专题</h1>
-	<ul>
-		<li ng-repeat="info in allAdvancedCoursesData.info" class="well">
-			<a href="#/ads/{{ad.id}}">
-				<div><strong>{{info.title}}</strong> {{info.desc}}</div>
-			</a>
-		</li>
-	</ul>
+    <h1>技巧专题</h1>
+    <ul>
+        <li ng-repeat="info in allAdvancedCoursesData.info" class="well">
+                <div class="hot-img-l"> <img src={{info.img}} alt={{info.title}}></div>
+                <div class="hot-text-r">
+                    <h2>{{info.title}}: {{info.desc}}</h2>
+                    <p>
+                    	<span class="name">xxx</span>
+                    	<span class="number">9528</span>
+                    </p>
+                </div>
+        </li>
+    </ul>
 </div>
