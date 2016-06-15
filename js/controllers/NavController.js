@@ -6,13 +6,14 @@ app.controller('NavController', function($scope) {
     var url = window.location.href;
     if (url.indexOf('#/qupus') >= 0) {
         $scope.isQupuActive = true;
-    } else if (url.indexOf('#/courses') >= 0) {
-        $scope.isCoursesActive = true;
     } else if (url.indexOf('#/search') >= 0) {
         $scope.isSearchActive = true;
+    } else if (url.indexOf('#/courses') >= 0) {
+        $scope.isCoursesActive = true;
+    } else {
+       $scope.isCoursesActive = true;
     }
 
-    if (window.location.href)
     $scope.navClick = function(id) {
         $scope.isCoursesActive = false;
         $scope.isQupuActive = false;
