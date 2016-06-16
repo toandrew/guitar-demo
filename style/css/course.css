@@ -174,3 +174,10 @@
 .course_info span {
     font-size: 0.25rem;
 }
+
+.yuepu_list_img {
+    display: -webkit-box;
+    display: -moz-box;
+    width: 5.54rem;
+    margin: 0 auto;
+}
