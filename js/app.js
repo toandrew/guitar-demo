@@ -10,11 +10,11 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute'])
             templateUrl: 'templates/search.html',
             controller: 'SearchController'
         }).when('/course/:id', {
-            templateUrl: 'templates/course-run.html',
-            controller: 'CourseRunningController'
+            templateUrl: 'templates/course.html',
+            controller: 'CourseDetailController'
         }).when('/qupu/:id', {
             templateUrl: 'templates/qupu.html',
-            controller: 'OneQupuController'
+            controller: 'QupuDetailController'
         }).otherwise({
             redirectTo: '/courses'
         });

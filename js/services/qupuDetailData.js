@@ -1,6 +1,6 @@
-app.factory('courseRunningData', function($resource, $http) {
+app.factory('qupuDetailData', function($resource, $http) {
     var resource = $resource(
-        'http://127.0.0.1:8888/v1/course/:id', {
+        'http://127.0.0.1:8888/v1/qupu/:id', {
             id: '@id'
         }, {
             get: {
@@ -12,7 +12,7 @@ app.factory('courseRunningData', function($resource, $http) {
         }
     );
 
-    function getCourse(id) {
+    function getQupu(id) {
         return resource.get({ id: id });
     }
 
