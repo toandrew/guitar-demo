@@ -1,4 +1,4 @@
-app.controller('NavController', function($scope) {
+app.controller('NavController', function($rootScope, $scope) {
     $scope.isCoursesActive = false;
     $scope.isQupuActive = false;
     $scope.isSearchActive = false;
@@ -30,4 +30,11 @@ app.controller('NavController', function($scope) {
                 break;
         }
     }
+
+    $scope.shouldShow = true;
+
+    $rootScope.$on('hideNav', function(event, data) {
+        console.log('hideNav: event:' + event + ' data:' + data);
+        $scope.shouldShow = !!data;
+    });
 });

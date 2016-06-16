@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngResource', 'ngRoute'])
+var app = angular.module('myApp', ['ngResource', 'ngRoute', 'ngAnimate', 'ui.bootstrap'])
     .config(function($routeProvider) {
         $routeProvider.when('/courses', {
             templateUrl: 'templates/courses.html',
