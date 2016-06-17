@@ -2,7 +2,7 @@
  * this should be refactor later:
  * 1. use directive
  * 2. it's used somewhere, so it should be as a service? 
- */ 
+ */
 app.controller('AlphaTabController', function($scope) {
     var at = $('#alphaTab');
 
@@ -26,16 +26,16 @@ app.controller('AlphaTabController', function($scope) {
         as.On('ready', function(r) {
             // load default data
             as.LoadSoundFontUrl('lib/alphaSynth/default.sf2');
+
+            updateLayout();
         });
 
         as.On('soundFontLoad', function(loaded, full) {
             var percentage = ((loaded / full) * 100) | 0;
-            $scope.soundFontLoadProgress = '(' + percentage + '%)';
-            //$('#sfInfo .progress').text('(' + percentage + '%)');
+            $('#sfInfo .progress').text('(' + percentage + '%)');
         });
 
         as.On('soundFontLoaded', function() {
-            //$scope.soundFontInfo.hide();
             $('#sfInfo').hide();
         });
 
@@ -53,12 +53,12 @@ app.controller('AlphaTabController', function($scope) {
             if (!playerReady) {
                 $('#loadingInfo').show()
                 $('#controls button').attr('disabled', 'disabled');
-                $('#layoutButtons button').attr('disabled', 'disabled');
+                //$('#layoutButtons button').attr('disabled', 'disabled');
             } else {
                 $('#loadingInfo').hide()
                 $('#playPause').removeAttr('disabled');
-                $('#save').removeAttr('disabled');
-                $('#layoutButtons button').removeAttr('disabled');
+                //$('#save').removeAttr('disabled');
+                //$('#layoutButtons button').removeAttr('disabled');
                 switch (playerState) {
                     case 0: // stopped
                         $('#playPause').text('Play').removeClass('pause').addClass('play');
@@ -76,12 +76,10 @@ app.controller('AlphaTabController', function($scope) {
             }
         }
 
-        $('#layoutButtons button').click(function() {
-            $('#layoutButtons button').removeClass('active');
-            $(this).addClass('active');
+        function updateLayout() {
+            var layout = $('#controls').data('layout');
+            var scrollmode = $('#controls').data('scrollmode');
 
-            var layout = $(this).data('layout');
-            var scrollmode = $(this).data('scrollmode');
             // update renderer
             var renderer = at.alphaTab('renderer');
             renderer.Settings.Layout.Mode = layout;
@@ -91,7 +89,7 @@ app.controller('AlphaTabController', function($scope) {
             var context = at.data('alphaTab');
             context.cursorOptions.autoScroll = scrollmode;
             at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
-        });
+        }
 
         //
         // 3. Add cursors (optional)
