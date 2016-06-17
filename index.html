@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style/css/gh-buttons.css" />
     <link rel="stylesheet" href="style/css/demo.css" />
     <link rel="stylesheet" href="style/css/player.css" />
+    <link rel="stylesheet" href="style/css/video-player.css" />
 </head>
 
 <body>
@@ -40,6 +41,10 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular-sanitize.min.js"></script>
+    <script src="lib/videogular/videogular.js"></script>
+    <script src="lib/videogular/vg-controls.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/coursesData.js"></script>
     <script src="js/services/qupusData.js"></script>
@@ -51,7 +56,7 @@
     <script src="js/controllers/SearchController.js"></script>
     <script src="js/controllers/CourseDetailController.js"></script>
     <script src="js/controllers/QupuDetailController.js"></script>
-    <script src="js/controllers/AlphaTabController.js"></script>
+    <script src="js/controllers/VideoController.js"></script>
 
         <!-- Including alphaTab -->
     <script type="text/javascript" src="lib/alphaTab/AlphaTab.js"></script>
@@ -64,6 +69,8 @@
 
     <!-- alphaSynth Plugin -->
     <script type="text/javascript" src="lib/alphaTab/jquery.alphaTab.alphaSynth.js"></script>
+
+    <script src="js/controllers/AlphaTabController.js"></script>
 </body>
 
 </html>
