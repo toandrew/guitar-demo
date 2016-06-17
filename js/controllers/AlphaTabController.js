@@ -27,7 +27,7 @@ app.controller('AlphaTabController', function($scope) {
             // load default data
             as.LoadSoundFontUrl('lib/alphaSynth/default.sf2');
 
-            updateLayout();
+            $scope.updateLayout();
         });
 
         as.On('soundFontLoad', function(loaded, full) {
@@ -76,21 +76,6 @@ app.controller('AlphaTabController', function($scope) {
             }
         }
 
-        function updateLayout() {
-            var layout = $('#controls').data('layout');
-            var scrollmode = $('#controls').data('scrollmode');
-
-            // update renderer
-            var renderer = at.alphaTab('renderer');
-            renderer.Settings.Layout.Mode = layout;
-            renderer.Invalidate();
-
-            // update player
-            var context = at.data('alphaTab');
-            context.cursorOptions.autoScroll = scrollmode;
-            at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
-        }
-
         //
         // 3. Add cursors (optional)
         at.alphaTab('playerCursor');
@@ -109,5 +94,33 @@ app.controller('AlphaTabController', function($scope) {
         $scope.as.Stop();
     }
 
-    $scope.init();
+    $scope.updateLayout = function() {
+        var layout = $('#controls').data('layout');
+        var scrollmode = $('#controls').data('scrollmode');
+
+        console.log('updateLayout: layout[' + layout + ']scrollmode[' + scrollmode + ']');
+
+        // update renderer
+        var renderer = at.alphaTab('renderer');
+        renderer.Settings.Layout.Mode = layout;
+        renderer.Invalidate();
+
+        // update player
+        var context = at.data('alphaTab');
+        context.cursorOptions.autoScroll = scrollmode;
+        at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
+    }
+
+
+
+    $scope.$on('courseDataUpdated', function(evt, courseInfo) {
+        console.log('evt:' + evt + ' data:' + courseInfo.qupu + ' tracks:' + courseInfo.tracks);
+
+        // will change it later.
+        var element = document.getElementById('alphaTab');
+        element.dataset.file = courseInfo.qupu;
+        element.dataset.tracks = courseInfo.tracks;
+
+        $scope.init();
+    });
 });
