@@ -27,7 +27,7 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
                 course.courseInfo.tracks = data.detail[0].tracks;
             }
 
-            $scope.$broadcast('courseDataUpdated', course.courseInfo);
+            $scope.$broadcast('qupuUpdated', course.courseInfo);
         }, function(error) {
             $log.error(error);
         });

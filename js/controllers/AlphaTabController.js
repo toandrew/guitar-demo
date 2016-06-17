@@ -111,15 +111,13 @@ app.controller('AlphaTabController', function($scope) {
         at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
     }
 
-
-
-    $scope.$on('courseDataUpdated', function(evt, courseInfo) {
-        console.log('evt:' + evt + ' data:' + courseInfo.qupu + ' tracks:' + courseInfo.tracks);
+    $scope.$on('qupuUpdated', function(evt, info) {
+        console.log('evt:' + evt + ' data:' + info.qupu + ' tracks:' + info.tracks);
 
         // will change it later.
         var element = document.getElementById('alphaTab');
-        element.dataset.file = courseInfo.qupu;
-        element.dataset.tracks = courseInfo.tracks;
+        element.dataset.file = info.qupu;
+        element.dataset.tracks = info.tracks;
 
         $scope.init();
     });

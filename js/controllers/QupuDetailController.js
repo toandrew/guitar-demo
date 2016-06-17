@@ -1,2 +1,23 @@
-app.controller('QupuDetailController', function($scope, courseDetailData, $log) {
+app.controller('QupuDetailController', function($scope, $routeParams, qupuDetailData, $log) {
+    var qupu = $scope;
+
+    qupu.qupuInfo = {};
+
+    qupu.qupuInfo.qupu = '';
+    qupu.qupuInfo.tracks = '0';
+
+    qupuDetailData.getQupu($routeParams.id)
+        .$promise
+        .then(function(data) {
+            console.log('data:' + data);
+
+            if (data && data.detail) {
+                qupu.qupuInfo.qupu = data.detail.qupu_url;
+                qupu.qupuInfo.tracks = data.detail.tracks;
+            }
+
+            $scope.$broadcast('qupuUpdated', qupu.qupuInfo);
+        }, function(error) {
+            $log.error(error);
+        });
 });

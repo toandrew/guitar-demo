@@ -17,6 +17,6 @@ app.factory('qupuDetailData', function($resource, $http) {
     }
 
     return {
-        getCourse: getCourse
+        getQupu: getQupu
     }
 });
