@@ -910,7 +910,9 @@ body {
     display: none;
 }
 
+
 /** demo */
+
 #s_keyword {
     width: 60%;
     height: 0.5rem;
@@ -958,4 +960,10 @@ body {
 
 span.name {
     padding: 0;
+}
+
+.alphaTabSurface {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #FFF;
+    border-radius: 3px;
 }
