@@ -3,7 +3,7 @@
     height: 320px;
     margin: auto;
     overflow: hidden;
-    font-size: 0.4rem;
+    font-size: 0rem;
 }
 
 @media (min-width: 1200px) {
