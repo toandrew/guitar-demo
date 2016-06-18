@@ -30,8 +30,9 @@
             <div class="course_info">
                 <h3>{{courseInfo.desc}}</h3>
                 <p>{{courseInfo.other}}</p>
+                <p ng-show="hasImages()"><img src={{currentImage()}}/></p>
             </div>
-            <div ng-controller="AlphaTabController">
+            <div ng-controller="AlphaTabController" ng-show="hasQupu()">
                 <div id="alphaTab" data-file="" data-tracks=""></div>
                 <div id="controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
                     <div id="loadingInfo">Player not ready</div>

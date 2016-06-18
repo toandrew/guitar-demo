@@ -5,7 +5,7 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     course.currentCourseIndex = 0;
     course.currentCoursePartIndex = 0;
-
+    course.currentCoursePartImagesIndex = 0;
     course.courseData = {
         count: 0
     }
@@ -25,19 +25,7 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
             console.log('data:' + data);
             course.courseData = data;
 
-            if (data && data.count > 0) {
-                course.courseInfo.title = data.detail[0].parts[0].title;
-                course.courseInfo.videoSrc = data.detail[0].parts[0].video_url;
-                course.courseInfo.desc = data.detail[0].parts[0].info;
-                course.courseInfo.other = data.detail[0].parts[0].other;
-                course.courseInfo.qupu = data.detail[0].parts[0].qupu_url;
-                course.courseInfo.tracks = data.detail[0].parts[0].tracks;
-
-                course.currentCourseIndex = 0;
-                course.currentCoursePartIndex = 0;
-            }
-
-            $scope.$broadcast('qupuUpdated', course.courseInfo);
+            course.updateCurrentCourse(0);
         }, function(error) {
             $log.error(error);
         });
@@ -48,6 +36,24 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     course.isLastCourse = function() {
         return (course.currentCourseIndex >= course.courseData.count - 1);
+    }
+
+    course.hasImages = function() {
+        return (!!course.courseInfo.images && course.courseInfo.images.length > 0);
+    }
+
+    course.currentImage = function() {
+        var i = course.currentCoursePartImagesIndex;
+
+        if (course.courseInfo.images && course.courseInfo.images.length > 0) {
+            return course.courseInfo.images[i].url;
+        }
+
+        return "";
+    }
+
+    course.hasQupu = function() {
+        return !!course.courseInfo.qupu;
     }
 
     course.getPreviousCourseTitle = function() {
@@ -104,7 +110,11 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         course.courseInfo.qupu = data.detail[i].parts[partIndex].qupu_url;
         course.courseInfo.tracks = data.detail[i].parts[partIndex].tracks;
 
-        $scope.$broadcast('qupuUpdated', course.courseInfo);
+        course.courseInfo.images = data.detail[i].parts[partIndex].images;
+
+        if (course.hasQupu()) {
+            $scope.$broadcast('qupuUpdated', course.courseInfo);
+        }
 
         course.updatePrevNextState()
     }
