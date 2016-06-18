@@ -1,8 +1,8 @@
 <div class="course-body">
     <div class="btn-group">
-        <button class="button" ng-show="!isFirstCourse()" ng-click="back()">前一节</button>
+        <button class="button" ng-disabled="isFirstCourse()" ng-click="prevCourse()">前一节</button>
         <p class="course-title">{{courseInfo.title}}</p>
-        <button class="button" ng-show="!isLastCourse()" ng-click="forward()">后一节</button>
+        <button class="button" ng-disabled="isLastCourse()" ng-click="nextCourse()">后一节</button>
     </div>
     <div class="slide-frame">
         <div class="wave ">
