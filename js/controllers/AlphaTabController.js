@@ -10,7 +10,9 @@ app.controller('AlphaTabController', function($scope) {
     var playerState = 0;
 
     $scope.init = function() {
-        //
+        
+        $.alphaTab.restore('#alphaTab');
+
         // 1. Load alphaTab
         at.alphaTab();
 

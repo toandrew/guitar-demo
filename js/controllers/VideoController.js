@@ -13,4 +13,6 @@ app.controller('VideoController', ["$sce", function($sce) {
             }
         }
     };
-}]);
+}]
+
+);
