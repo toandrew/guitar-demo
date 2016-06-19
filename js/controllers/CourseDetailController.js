@@ -3,8 +3,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     var course = $scope;
 
-    course.showFullScreenButton = false;
-    course.isFullScreenMode = false;
+    course.showFullModeButton = false;
+    course.isFullMode = false;
     course.showUnlockedQupu = false;
 
     course.currentCourseIndex = 0;
@@ -115,9 +115,11 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         course.courseInfo.tracks = data.detail[i].parts[partIndex].tracks;
 
         course.courseInfo.images = data.detail[i].parts[partIndex].images;
-        course.showFullScreenButton = (data.detail[i].parts[partIndex].type == 'full');
+        course.showFullModeButton = (data.detail[i].parts[partIndex].type == 'full');
 
         course.showUnlockedQupu = (data.detail[i].parts[partIndex].type == 'more');
+        
+        course.isFullMode = false;
 
         if (course.hasQupu()) {
             $scope.$broadcast('qupuUpdated', course.courseInfo);
@@ -186,4 +188,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
             course.updatePrevNextState();
         }
     });
+
+    course.toggleFullMode = function() {
+        course.isFullMode = true;
+    }
 });

@@ -5,7 +5,7 @@
         <button class="button" ng-disabled="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
     </div>
     <div class="slide-frame" ng-show="!showUnlockedQupu">
-        <div class="wave" ng-show="!isFullScreenMode">
+        <div class="wave" ng-show="!isFullMode">
             <div ng-controller="VideoController as controller" class="videogular-container">
                 <videogular vg-theme="controller.config.theme.url">
                     <vg-media vg-src="courseInfo.videoSrc" vg-tracks="controller.config.tracks">
@@ -28,15 +28,17 @@
                 </videogular>
             </div>
             <div class="course-info">
-                <button class="button full-screen" ng-show="showFullScreenButton">全曲练习</button>
-                <div ng-show="!showFullScreenButton">
+                <button class="button full-mode" ng-show="showFullModeButton" ng-click="toggleFullMode()">全曲练习</button>
+                <div ng-show="!showFullModeButton">
                     <h3>{{courseInfo.desc}}</h3>
                     <p>{{courseInfo.other}}</p>
                 </div>
                 <p ng-show="hasImages()"><img src={{currentImage()}}></p>
             </div>
         </div>
-        <div ng-show="isFullScreenMode">
+        <div ng-show="isFullMode">
+            <course-qupu-ctrl> 
+            </course-qupu-ctrl>
         </div>
         <div ng-controller="AlphaTabController" ng-show="hasQupu()">
             <div id="alphaTab" data-file="" data-tracks=""></div>
