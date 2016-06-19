@@ -3,6 +3,10 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     var course = $scope;
 
+    course.showFullScreenButton = false;
+    course.isFullScreenMode = false;
+    course.showUnlockedQupu = false;
+
     course.currentCourseIndex = 0;
     course.currentCoursePartIndex = 0;
     course.currentCoursePartImagesIndex = 0;
@@ -111,6 +115,9 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         course.courseInfo.tracks = data.detail[i].parts[partIndex].tracks;
 
         course.courseInfo.images = data.detail[i].parts[partIndex].images;
+        course.showFullScreenButton = (data.detail[i].parts[partIndex].type == 'full');
+
+        course.showUnlockedQupu = (data.detail[i].parts[partIndex].type == 'more');
 
         if (course.hasQupu()) {
             $scope.$broadcast('qupuUpdated', course.courseInfo);

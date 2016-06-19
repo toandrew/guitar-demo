@@ -4,8 +4,8 @@
         <p class="course-title">{{courseInfo.title}}</p>
         <button class="button" ng-disabled="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
     </div>
-    <div class="slide-frame">
-        <div class="wave ">
+    <div class="slide-frame" ng-show="!showUnlockedQupu">
+        <div class="wave" ng-show="!isFullScreenMode">
             <div ng-controller="VideoController as controller" class="videogular-container">
                 <videogular vg-theme="controller.config.theme.url">
                     <vg-media vg-src="courseInfo.videoSrc" vg-tracks="controller.config.tracks">
@@ -27,20 +27,43 @@
                     <vg-overlay-play></vg-overlay-play>
                 </videogular>
             </div>
-            <div class="course_info">
-                <h3>{{courseInfo.desc}}</h3>
-                <p>{{courseInfo.other}}</p>
+            <div class="course-info">
+                <button class="button full-screen" ng-show="showFullScreenButton">全曲练习</button>
+                <div ng-show="!showFullScreenButton">
+                    <h3>{{courseInfo.desc}}</h3>
+                    <p>{{courseInfo.other}}</p>
+                </div>
                 <p ng-show="hasImages()"><img src={{currentImage()}}></p>
             </div>
-            <div ng-controller="AlphaTabController" ng-show="hasQupu()">
-                <div id="alphaTab" data-file="" data-tracks=""></div>
-                <div id="controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
-                    <div id="loadingInfo">Player not ready</div>
-                    <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
-                    <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()">Play</button>
-                    <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()">Stop</button>
-                </div>
+        </div>
+        <div ng-show="isFullScreenMode">
+        </div>
+        <div ng-controller="AlphaTabController" ng-show="hasQupu()">
+            <div id="alphaTab" data-file="" data-tracks=""></div>
+            <div id="controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
+                <div id="loadingInfo">Player not ready</div>
+                <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
+                <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()">Play</button>
+                <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()">Stop</button>
             </div>
         </div>
     </div>
+    <div class="all-courses" ng-controller="UnlockedQupuController" ng-show="showUnlockedQupu" >
+        <ul>
+            <li ng-repeat="info in unlockedQupuData.info" class="well">
+                <a href="#/qupu/{{info.id}}">
+                    <div class="hot-img-l"> <img src={{info.detail.img}} alt={{info.title}}></div>
+                    <div class="hot-text-r">
+                        <h2>{{info.title}}</h2>
+                        <p class="qupu-type">难易度：{{info.type}}</p>
+                        <p>
+                            <span class="name">xxx</span>
+                            <span class="number">12306</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 </div>
