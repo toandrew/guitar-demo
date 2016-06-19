@@ -34,7 +34,7 @@
             </div>
         </div>
         <div ng-controller="AlphaTabController">
-            <div id="alphaTab" data-file="" data-tracks="" ng-show="!showUnlockedQupu"></div>
+            <div id="alphaTab" data-file="" data-tracks="" ng-show="showAlphaTab()"></div>
             <div id="course-controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
                 <button class="button" ng-hide="isFirstCourse()" ng-click="prevCourse()">前一节: {{getPreviousCourseTitle()}}</button>
                 <div id="loadingInfo">Player not ready</div>

@@ -118,7 +118,7 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         course.showFullModeButton = (data.detail[i].parts[partIndex].type == 'full');
 
         course.showUnlockedQupu = (data.detail[i].parts[partIndex].type == 'more');
-        
+
         course.isFullMode = false;
 
         if (course.hasQupu()) {
@@ -191,5 +191,9 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     course.toggleFullMode = function() {
         course.isFullMode = true;
+    }
+
+    course.showAlphaTab = function() {
+        return !course.hasImages() && !course.showUnlockedQupu;
     }
 });
