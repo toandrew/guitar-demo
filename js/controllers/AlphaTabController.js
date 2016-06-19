@@ -54,8 +54,9 @@ app.controller('AlphaTabController', function($scope) {
         function updateControls() {
             if (!playerReady) {
                 $('#loadingInfo').show()
-                $('#controls button').attr('disabled', 'disabled');
-                //$('#layoutButtons button').attr('disabled', 'disabled');
+
+                $('#playPause').attr('disabled', 'disabled');
+                $('#stop').attr('disabled', 'disabled');
             } else {
                 $('#loadingInfo').hide()
                 $('#playPause').removeAttr('disabled');

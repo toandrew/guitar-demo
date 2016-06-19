@@ -8,17 +8,33 @@
     background:#4040FF;
 }
 
-#controls {
+#course-controls {
     font-size: 0.1rem;
     position:fixed;
     bottom:0;
     height:35px;
     left:0;
     right:0;
-    background:#e0000000;
+    background:#2E2E2E;
     padding:10px;
     z-index:2000;
     text-align:center;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#controls {
+    font-size: 0.1rem;
+    position: fixed;
+    bottom: 0;
+    height: 35px;
+    left: 0;
+    right: 0;
+    background: #2E2E2E;
+    padding: 10px;
+    z-index: 2000;
+    text-align: center;
 }
 
 #loadingInfo {

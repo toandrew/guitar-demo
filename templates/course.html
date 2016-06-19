@@ -1,12 +1,10 @@
 <div class="course-body">
     <div class="btn-group">
-        <button class="button" ng-disabled="isFirstCourse()" ng-click="prevCourse()">前一节: {{getPreviousCourseTitle()}}</button>
-        <p class="course-title">{{courseInfo.title}}</p>
-        <button class="button" ng-disabled="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
+        <span class="course-title">{{courseInfo.title}}</span>
     </div>
-    <div class="slide-frame" ng-show="!showUnlockedQupu">
-        <div class="wave" ng-show="!isFullMode">
-            <div ng-controller="VideoController as controller" class="videogular-container">
+    <div class="slide-frame">
+        <div class="wave" ng-show="!showUnlockedQupu">
+            <div ng-controller="VideoController as controller" class="videogular-container" ng-show="!isFullMode" >
                 <videogular vg-theme="controller.config.theme.url">
                     <vg-media vg-src="courseInfo.videoSrc" vg-tracks="controller.config.tracks">
                     </vg-media>
@@ -27,8 +25,7 @@
                     <vg-overlay-play></vg-overlay-play>
                 </videogular>
             </div>
-            <div class="course-info">
-                <button class="button full-mode" ng-show="showFullModeButton" ng-click="toggleFullMode()">全曲练习</button>
+            <div class="course-info" ng-show="!isFullMode" >
                 <div ng-show="!showFullModeButton">
                     <h3>{{courseInfo.desc}}</h3>
                     <p>{{courseInfo.other}}</p>
@@ -36,21 +33,22 @@
                 <p ng-show="hasImages()"><img src={{currentImage()}}></p>
             </div>
         </div>
-        <div ng-show="isFullMode">
-            <course-qupu-ctrl> 
-            </course-qupu-ctrl>
-        </div>
-        <div ng-controller="AlphaTabController" ng-show="hasQupu()">
-            <div id="alphaTab" data-file="" data-tracks=""></div>
-            <div id="controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
+        <div ng-controller="AlphaTabController">
+            <div id="alphaTab" data-file="" data-tracks="" ng-show="!showUnlockedQupu"></div>
+            <div id="course-controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
+                <button class="button" ng-hide="isFirstCourse()" ng-click="prevCourse()">前一节: {{getPreviousCourseTitle()}}</button>
                 <div id="loadingInfo">Player not ready</div>
                 <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
-                <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()">Play</button>
-                <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()">Stop</button>
+                <div class="button-group">
+                    <button class="button full-mode" ng-show="showFullModeButton" ng-click="toggleFullMode()">全曲练习</button>
+                    <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()" ng-show="isFullMode">Play</button>
+                    <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()" ng-show="isFullMode">Stop</button>
+                </div>
+                <button class="button" ng-hide="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
             </div>
         </div>
     </div>
-    <div class="all-courses" ng-controller="UnlockedQupuController" ng-show="showUnlockedQupu" >
+    <div class="all-courses" ng-controller="UnlockedQupuController" ng-show="showUnlockedQupu">
         <ul>
             <li ng-repeat="info in unlockedQupuData.info" class="well">
                 <a href="#/qupu/{{info.id}}">

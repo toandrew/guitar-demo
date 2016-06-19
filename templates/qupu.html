@@ -3,7 +3,9 @@
     <div id="controls" data-layout="page" data-scrollmode="vertical">
         <div id="loadingInfo">Player not ready</div>
         <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
-        <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()">Play</button>
-        <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()">Stop</button>
+        <div class="button-group" id="layoutButtons">
+            <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()">Play</button>
+            <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()">Stop</button>
+        </div>
     </div>
 </div>

@@ -3,17 +3,17 @@
     flex-direction: column;
 }
 
-.course-body .btn-group {
+.course-body .course-title {
     height: 0.5rem;
     font-size: 0.4rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .slide-frame {
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
     width: 100%;
 
     margin-top: 0.1rem;
