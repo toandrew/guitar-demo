@@ -190,7 +190,7 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
     });
 
     course.toggleFullMode = function() {
-        course.isFullMode = true;
+        course.isFullMode = !course.isFullMode;
     }
 
     course.showAlphaTab = function() {
