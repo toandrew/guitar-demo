@@ -14,7 +14,6 @@ app.controller('AlphaTabController', function($scope) {
     $scope.mymetronome = $scope.metronomes[0];
 
     $scope.init = function() {
-        
         $.alphaTab.restore('#alphaTab');
 
         // 1. Load alphaTab
