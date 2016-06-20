@@ -1,10 +1,12 @@
 <div class="course-body">
-    <div class="btn-group">
+    <div id="course-title-controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
+        <button class="button" ng-disabled="isFirstCourse()" ng-click="prevCourse()">上一节: {{getPreviousCourseTitle()}}</button>
         <span class="course-title">{{courseInfo.title}}</span>
+        <button class="button" ng-disabled="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
     </div>
     <div class="slide-frame">
         <div class="wave" ng-show="!showUnlockedQupu">
-            <div ng-controller="VideoController as controller" class="videogular-container" ng-show="!isFullMode" >
+            <div ng-controller="VideoController as controller" class="videogular-container" ng-show="!isFullMode">
                 <videogular vg-theme="controller.config.theme.url">
                     <vg-media vg-src="courseInfo.videoSrc" vg-tracks="controller.config.tracks">
                     </vg-media>
@@ -25,7 +27,7 @@
                     <vg-overlay-play></vg-overlay-play>
                 </videogular>
             </div>
-            <div class="course-info" ng-show="!isFullMode" >
+            <div class="course-info" ng-show="!isFullMode">
                 <div ng-show="!showFullModeButton">
                     <h3>{{courseInfo.desc}}</h3>
                     <p>{{courseInfo.other}}</p>
@@ -35,16 +37,14 @@
         </div>
         <div ng-controller="AlphaTabController">
             <div id="alphaTab" data-file="" data-tracks="" ng-show="showAlphaTab()"></div>
-            <div id="course-controls" data-layout="horizontal" data-scrollmode="horizontal-bar">
-                <button class="button" ng-hide="isFirstCourse()" ng-click="prevCourse()">前一节: {{getPreviousCourseTitle()}}</button>
+            <div id="course-controls" data-layout="horizontal" data-scrollmode="horizontal-bar" ng-show="showFullModeButton">
                 <div id="loadingInfo">Player not ready</div>
                 <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
                 <div class="button-group">
-                    <button class="button full-mode" ng-show="showFullModeButton" ng-click="toggleFullMode()">全曲练习</button>
+                    <button class="button full-mode" ng-click="toggleFullMode()">全曲练习</button>
                     <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()" ng-show="isFullMode">Play</button>
                     <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()" ng-show="isFullMode">Stop</button>
                 </div>
-                <button class="button" ng-hide="isLastCourse()" ng-click="nextCourse()">下一节: {{getNextCourseTitle()}}</button>
             </div>
         </div>
     </div>

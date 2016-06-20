@@ -74,3 +74,17 @@
     float: right;
     margin: 0.2rem 0.2rem 0.2rem !important;
 }
+
+#course-title-controls {
+    font-size: 0.1rem;
+    top:0;
+    height:35px;
+    left:0;
+    right:0;
+    background:#0e000000;
+    padding:10px;
+    z-index:2000;
+    text-align:center;
+    display: flex;
+    justify-content: space-between;
+}
