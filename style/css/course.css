@@ -88,3 +88,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+.metronome {
+  padding-left: 0.1rem;
+}

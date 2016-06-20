@@ -9,6 +9,10 @@ app.controller('AlphaTabController', function($scope) {
     var playerReady = false;
     var playerState = 0;
 
+
+    $scope.metronomes = [{ id: 0, name: '请选择节拍器'}, { id: 1, name: '半速' }, { id: 2, name: '全速' }];
+    $scope.mymetronome = $scope.metronomes[0];
+
     $scope.init = function() {
         
         $.alphaTab.restore('#alphaTab');
@@ -64,15 +68,15 @@ app.controller('AlphaTabController', function($scope) {
                 //$('#layoutButtons button').removeAttr('disabled');
                 switch (playerState) {
                     case 0: // stopped
-                        $('#playPause').text('Play').removeClass('pause').addClass('play');
+                        $('#playPause').removeClass('pause').addClass('play');
                         $('#stop').attr('disabled', 'disabled');
                         break;
                     case 1: // playing
-                        $('#playPause').text('Pause').removeClass('play').addClass('pause');
+                        $('#playPause').removeClass('play').addClass('pause');
                         $('#stop').removeAttr('disabled');
                         break;
                     case 2: // paused
-                        $('#playPause').text('Play').removeClass('pause').addClass('play');
+                        $('#playPause').removeClass('pause').addClass('play');
                         $('#stop').removeAttr('disabled');
                         break;
                 }

@@ -40,10 +40,21 @@
             <div id="course-controls" data-layout="horizontal" data-scrollmode="horizontal-bar" ng-show="showFullModeButton">
                 <div id="loadingInfo">Player not ready</div>
                 <div id="sfInfo">Loading Soundfont <span class="progress"></span></div>
+
                 <div class="button-group">
                     <button class="button full-mode" ng-click="toggleFullMode()">全曲练习</button>
-                    <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()" ng-show="isFullMode">Play</button>
-                    <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()" ng-show="isFullMode">Stop</button>
+                    <button class="button play" disabled="disabled" id="playPause" ng-click="playPauseQupu()" ng-show="isFullMode"></button>
+                    <button class="button" disabled="disabled" id="stop" ng-click="stopQupu()" ng-show="isFullMode"></button>
+                </div>
+                <div class="button-group" ng-show="isFullMode">
+                    <button class="button">静音EM</button>
+                    <button class="button" >静音AM</button>
+                    <button class="button">全部静音</button>
+                </div>
+
+                <div class="metronome" ng-show="isFullMode">
+                    <select ng-model="mymetronome" ng-options="metronome.name for metronome in metronomes">
+                    </select>
                 </div>
             </div>
         </div>
