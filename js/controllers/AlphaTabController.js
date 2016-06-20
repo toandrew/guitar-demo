@@ -4,8 +4,6 @@
  * 2. it's used somewhere, so it should be as a service? 
  */
 app.controller('AlphaTabController', function($scope) {
-    var at = $('#alphaTab');
-
     var playerReady = false;
     var playerState = 0;
 
@@ -14,6 +12,10 @@ app.controller('AlphaTabController', function($scope) {
     $scope.mymetronome = $scope.metronomes[0];
 
     $scope.init = function() {
+        $scope.at = $('#alphaTab');
+
+        var at = $scope.at;
+
         $.alphaTab.restore('#alphaTab');
 
         // 1. Load alphaTab
@@ -112,9 +114,9 @@ app.controller('AlphaTabController', function($scope) {
         renderer.Invalidate();
 
         // update player
-        var context = at.data('alphaTab');
+        var context = $scope.at.data('alphaTab');
         context.cursorOptions.autoScroll = scrollmode;
-        at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
+        $scope.at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
     }
 
     $scope.$on('qupuUpdated', function(evt, info) {
