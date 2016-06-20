@@ -14,6 +14,11 @@ app.controller('AlphaTabController', function($scope) {
     $scope.init = function() {
         $scope.at = $('#alphaTab');
 
+        // release AudioContext?
+        if ($scope.as) {
+            $scope.as.Close();
+        }
+
         var at = $scope.at;
 
         $.alphaTab.restore('#alphaTab');
@@ -109,7 +114,7 @@ app.controller('AlphaTabController', function($scope) {
         console.log('updateLayout: layout[' + layout + ']scrollmode[' + scrollmode + ']');
 
         // update renderer
-        var renderer = at.alphaTab('renderer');
+        var renderer = $scope.at.alphaTab('renderer');
         renderer.Settings.Layout.Mode = layout;
         renderer.Invalidate();
 
