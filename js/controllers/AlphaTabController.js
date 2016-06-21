@@ -3,10 +3,11 @@
  * 1. use directive
  * 2. it's used somewhere, so it should be as a service? 
  */
-app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsHelper) {
+app.controller('AlphaTabController', function($scope, $timeout, $window, alphaTabSettingsHelper) {
     var playerReady = false;
     var playerState = 0;
 
+    var timer = null;
 
     $scope.alphaTabDefaultSettings = AlphaTab.Settings.get_Defaults();
 
@@ -154,16 +155,21 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
         $scope.init();
     });
 
-    angular.element($window).bind('resize', function () {
-        console.log($window.innerWidth);
-
-        $scope.alphaTabConfig.width = $window.innerWidth;
-        // stop?
-        if ($scope.as) {
-            $scope.stopQupu();
+    angular.element($window).bind('resize', function() {
+        if (timer) {
+            $timeout.cancel(timer);
         }
 
-        $scope.init();
+        timer = $timeout(function() {
+            $scope.alphaTabConfig.width = $window.innerWidth;
+            // stop?
+            if ($scope.as && $scope.as.Stop) {
+                $scope.stopQupu();
+            }
+
+            console.log('init alphatab!!!!!!!!!!!!!!!!!!!!!!!!!');
+            $scope.init();
+        }, 250);
     });
 
     $scope.$on('$destroy', function() {
@@ -171,6 +177,10 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
         if ($scope.as) {
             $scope.as.Stop();
             $scope.as.Close();
+        }
+
+        if (timer) {
+            $timeout.cancel(timer);
         }
     });
 });
