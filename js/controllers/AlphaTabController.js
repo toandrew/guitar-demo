@@ -100,6 +100,8 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
             }
         }
 
+        // we need some offset to display qupu?
+        //console.log('!!!$scope.at.offset.top:' + $scope.at.offset().top);
         //
         // 3. Add cursors (optional)
         at.alphaTab('playerCursor');
@@ -110,6 +112,11 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
         if (playerState == 1) {
             $scope.as.Pause();
         } else {
+            var context = $scope.at.data('alphaTab');
+            if (context.cursorOptions && !context.cursorOptions.autoScroll) {
+                console.log('set auto scroll!!!' + $scope.alphaTabConfig.scrollmode);
+                context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
+            }
             $scope.as.Play();
         }
     }
@@ -126,7 +133,7 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
 
         // update player
         var context = $scope.at.data('alphaTab');
-        context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
+        //context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
         $scope.at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
     }
 
