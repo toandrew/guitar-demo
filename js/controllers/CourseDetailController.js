@@ -121,6 +121,9 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
         course.isFullMode = false;
 
+        course.courseInfo.layoutMode = 'horizontal';
+        course.courseInfo.scrollmode = 'vertical';
+
         if (course.hasQupu()) {
             $scope.$broadcast('qupuUpdated', course.courseInfo);
         }

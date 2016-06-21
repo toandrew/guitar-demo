@@ -3,13 +3,20 @@
  * 1. use directive
  * 2. it's used somewhere, so it should be as a service? 
  */
-app.controller('AlphaTabController', function($scope) {
+app.controller('AlphaTabController', function($scope, alphaTabSettingsHelper) {
     var playerReady = false;
     var playerState = 0;
 
 
-    $scope.metronomes = [{ id: 0, name: '请选择节拍器'}, { id: 1, name: '半速' }, { id: 2, name: '全速' }];
+    $scope.alphaTabDefaultSettings = AlphaTab.Settings.get_Defaults();
+
+    $scope.metronomes = [{ id: 0, name: '请选择节拍器' }, { id: 1, name: '半速' }, { id: 2, name: '全速' }];
     $scope.mymetronome = $scope.metronomes[0];
+
+    $scope.alphaTabConfig = {
+        'layout': 'page',
+        'scrollmode': 'vertical'
+    };
 
     $scope.init = function() {
         $scope.at = $('#alphaTab');
@@ -24,7 +31,10 @@ app.controller('AlphaTabController', function($scope) {
         $.alphaTab.restore('#alphaTab');
 
         // 1. Load alphaTab
-        at.alphaTab();
+        //at.alphaTab();
+        var settings = alphaTabSettingsHelper.getAlphaTabSettings($scope.alphaTabConfig, $scope.alphaTabDefaultSettings);
+
+        at.alphaTab(settings);
 
         // 
         // 2. Initialize Player and Setup Player UI
@@ -108,19 +118,14 @@ app.controller('AlphaTabController', function($scope) {
     }
 
     $scope.updateLayout = function() {
-        var layout = $('#controls').data('layout');
-        var scrollmode = $('#controls').data('scrollmode');
-
-        console.log('updateLayout: layout[' + layout + ']scrollmode[' + scrollmode + ']');
 
         // update renderer
         var renderer = $scope.at.alphaTab('renderer');
-        renderer.Settings.Layout.Mode = layout;
         renderer.Invalidate();
 
         // update player
         var context = $scope.at.data('alphaTab');
-        context.cursorOptions.autoScroll = scrollmode;
+        context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
         $scope.at.alphaTab('playerCursorUpdateBeat', context.cursorOptions.currentBeat);
     }
 
@@ -131,6 +136,9 @@ app.controller('AlphaTabController', function($scope) {
         var element = document.getElementById('alphaTab');
         element.dataset.file = info.qupu;
         element.dataset.tracks = info.tracks;
+
+        $scope.alphaTabConfig.layout = info.layoutMode;
+        $scope.alphaTabConfig.scrollmode = info.scrollmode;
 
         $scope.init();
     });
