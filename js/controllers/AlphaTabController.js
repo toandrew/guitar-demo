@@ -150,6 +150,11 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
         console.log($window.innerWidth);
 
         $scope.alphaTabConfig.width = $window.innerWidth;
+        // stop?
+        if ($scope.as) {
+            $scope.stopQupu();
+        }
+
         $scope.init();
     });
 });
