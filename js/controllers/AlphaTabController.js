@@ -24,6 +24,7 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
 
         // release AudioContext?
         if ($scope.as) {
+            $scope.as.Stop();
             $scope.as.Close();
         }
 
@@ -163,5 +164,13 @@ app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsH
         }
 
         $scope.init();
+    });
+
+    $scope.$on('$destroy', function() {
+        console.log('destroy related alphatab resources!!!');
+        if ($scope.as) {
+            $scope.as.Stop();
+            $scope.as.Close();
+        }
     });
 });
