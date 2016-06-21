@@ -17,8 +17,8 @@ app.controller('QupuDetailController', function($scope, $routeParams, qupuDetail
             }
 
             qupu.qupuInfo.layoutMode = 'page';
-            qupu.qupuInfo.scrollmode = 'horizontal-bar';
-            
+            qupu.qupuInfo.scrollmode = 'vertical';
+
             $scope.$broadcast('qupuUpdated', qupu.qupuInfo);
         }, function(error) {
             $log.error(error);

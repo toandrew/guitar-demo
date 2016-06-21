@@ -121,7 +121,10 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
         course.isFullMode = false;
 
-        course.courseInfo.layoutMode = 'horizontal';
+        // course.courseInfo.layoutMode = 'horizontal';
+        // course.courseInfo.scrollmode = 'horizontal-bar';
+
+        course.courseInfo.layoutMode = 'page';
         course.courseInfo.scrollmode = 'vertical';
 
         if (course.hasQupu()) {

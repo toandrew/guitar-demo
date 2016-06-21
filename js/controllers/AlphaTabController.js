@@ -3,7 +3,7 @@
  * 1. use directive
  * 2. it's used somewhere, so it should be as a service? 
  */
-app.controller('AlphaTabController', function($scope, alphaTabSettingsHelper) {
+app.controller('AlphaTabController', function($scope, $window, alphaTabSettingsHelper) {
     var playerReady = false;
     var playerState = 0;
 
@@ -15,7 +15,8 @@ app.controller('AlphaTabController', function($scope, alphaTabSettingsHelper) {
 
     $scope.alphaTabConfig = {
         'layout': 'page',
-        'scrollmode': 'vertical'
+        'scrollmode': 'vertical',
+        'width': window.innerWidth
     };
 
     $scope.init = function() {
@@ -130,16 +131,25 @@ app.controller('AlphaTabController', function($scope, alphaTabSettingsHelper) {
     }
 
     $scope.$on('qupuUpdated', function(evt, info) {
-        console.log('evt:' + evt + ' data:' + info.qupu + ' tracks:' + info.tracks);
-
-        // will change it later.
         var element = document.getElementById('alphaTab');
-        element.dataset.file = info.qupu;
-        element.dataset.tracks = info.tracks;
 
-        $scope.alphaTabConfig.layout = info.layoutMode;
-        $scope.alphaTabConfig.scrollmode = info.scrollmode;
+        if (info) {
+            element.dataset.file = info.qupu;
+            element.dataset.tracks = info.tracks;
 
+            $scope.alphaTabConfig.layout = info.layoutMode;
+            $scope.alphaTabConfig.scrollmode = info.scrollmode;
+        }
+
+        $scope.alphaTabConfig.width = $window.innerWidth;
+
+        $scope.init();
+    });
+
+    angular.element($window).bind('resize', function () {
+        console.log($window.innerWidth);
+
+        $scope.alphaTabConfig.width = $window.innerWidth;
         $scope.init();
     });
 });

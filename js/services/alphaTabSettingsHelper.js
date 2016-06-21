@@ -1,13 +1,19 @@
 app.factory('alphaTabSettingsHelper', function() {
     var getAlphaTabSettings = function(alphaTabConfig, defaultSettings) {
-        var layout = alphaTabConfig.layout;
-
         var settings = defaultSettings;
 
+        var layout = alphaTabConfig.layout;
+        if (layout) {
+            settings.Layout.Mode = layout;
+        }
+
+        if (alphaTabConfig.width) {
+            settings.Width = alphaTabConfig.width;
+        }
+
         settings.Scale = 1;
-        settings.Layout.Mode = layout;
+
         settings.Layout.AdditionalSettings['autoSize'] = true;
-        settings.Width = 950;
         switch (settings.Layout.Mode) {
             case 'page':
                 settings.Layout.AdditionalSettings['start'] = 1;
