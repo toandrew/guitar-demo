@@ -117,7 +117,7 @@ app.controller('AlphaTabController', function($scope, $timeout, $window, alphaTa
             var context = $scope.at.data('alphaTab');
             if (context.cursorOptions && !context.cursorOptions.autoScroll) {
                 console.log('set auto scroll!!!' + $scope.alphaTabConfig.scrollmode);
-                context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
+                //context.cursorOptions.autoScroll = $scope.alphaTabConfig.scrollmode;
             }
             $scope.as.Play();
         }
@@ -184,7 +184,7 @@ app.controller('AlphaTabController', function($scope, $timeout, $window, alphaTa
         }
     });
 
-    $scope.$on('videoEvent', function(event, data) {
+    $scope.$on('alphaTabEvent', function(event, data) {
         var videoEvent = data;
         console.log('videoEvent:' + data);
         if (!$scope.as) {

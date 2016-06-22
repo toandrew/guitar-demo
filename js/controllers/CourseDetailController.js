@@ -132,6 +132,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         }
 
         course.updatePrevNextState()
+
+        course.updateAlphaTabState('stop');
     }
 
     // course sub-part control.
@@ -178,11 +180,10 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
             $scope.$broadcast('showEvent', 'next');
         }
 
-        course.updateAlphaTabState('stop');
     }
 
     course.updateAlphaTabState = function(data) {
-        $scope.$broadcast('videoEvent', data);
+        $scope.$broadcast('alphaTabEvent', data);
     }
 
     $scope.$on('videoState', function(event, data) {
@@ -214,6 +215,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
 
     course.toggleFullMode = function() {
         course.isFullMode = !course.isFullMode;
+
+        course.updateAlphaTabState('stop');
     }
 
     course.showAlphaTab = function() {
