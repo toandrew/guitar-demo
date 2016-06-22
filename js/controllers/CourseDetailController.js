@@ -177,6 +177,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         } else {
             $scope.$broadcast('showEvent', 'next');
         }
+
+        course.updateAlphaTabState('stop');
     }
 
     course.updateAlphaTabState = function(data) {
