@@ -1,4 +1,4 @@
-app.controller('CourseDetailController', function($rootScope, $scope, $routeParams, $log, courseDetailData) {
+app.controller('CourseDetailController', function($rootScope, $scope, $routeParams, $log, $timeout, courseDetailData) {
     console.log('$routeParams:id:' + $routeParams.id);
 
     var course = $scope;
@@ -22,6 +22,10 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         qupu: '',
         tracks: ''
     }
+
+    var timer = null;
+
+    course.stoppedByManual = false;
 
     courseDetailData.getCourse($routeParams.id)
         .$promise
@@ -88,6 +92,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         }
 
         course.updateCurrentCourse(0);
+
+        course.stoppedByManual = true;
     }
 
     course.prevCourse = function() {
@@ -98,6 +104,8 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         }
 
         course.updateCurrentCourse(0);
+
+        course.stoppedByManual = true;
     }
 
     course.updateCurrentCourse = function(partIndex) {
@@ -207,7 +215,10 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
             course.updatePrevNextState();
 
             course.updateAlphaTabState('stop');
+
+            course.checkAutoState();
         } else if (data == 'play') {
+            course.stoppedByManual = false;
             course.updateAlphaTabState('play');
         }
 
@@ -216,10 +227,53 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
     course.toggleFullMode = function() {
         course.isFullMode = !course.isFullMode;
 
+        course.stoppedByManual = true;
+
         course.updateAlphaTabState('stop');
     }
 
     course.showAlphaTab = function() {
         return !course.hasImages() && !course.showUnlockedQupu && course.hasQupu();
     }
+
+    course.updateVideoAutoState = function(data) {
+        //$scope.$broadcast('videoAutoEvent', data);
+
+        course.nextCurrentCoursePart();
+    }
+
+    course.checkAutoState = function() {
+        console.log('checkAutoState: stopped!!!!' + course.stoppedByManual);
+
+        var i = course.currentCourseIndex;
+
+        var j = course.currentCoursePartIndex;
+
+        if (j >= course.courseData.detail[i].pcount - 1) {
+            course.updateAlphaTabState('stop');
+            return;
+        }
+
+        console.log('i:' + i + ' j:' + j);
+
+        if (!course.stoppedByManual) {
+            course.updateVideoAutoState('play');
+            if (timer) {
+                $timeout.cancel(timer);
+            }
+
+            timer = $timeout(function() {
+                console.log('auto video Start!!!!');
+                $scope.$broadcast('videoAutoEvent', 'play');
+            }, 250);
+        }
+    }
+
+    $scope.$on('$destroy', function() {
+        course.stoppedByManual = true;
+
+        if (timer) {
+            $timeout.cancel(timer);
+        }
+    });
 });
