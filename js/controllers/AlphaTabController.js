@@ -183,4 +183,21 @@ app.controller('AlphaTabController', function($scope, $timeout, $window, alphaTa
             $timeout.cancel(timer);
         }
     });
+
+    $scope.$on('videoEvent', function(event, data) {
+        var videoEvent = data;
+        console.log('videoEvent:' + data);
+        if (!$scope.as) {
+            console.log('no qupu displayed!');
+            return;
+        }
+
+        if (videoEvent == 'play') {
+            $scope.playPauseQupu();
+        } else if (videoEvent == 'pause') {
+            $scope.playPauseQupu();
+        } else if (videoEvent == 'stop') {
+            $scope.stopQupu();
+        }
+    });
 });

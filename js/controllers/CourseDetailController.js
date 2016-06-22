@@ -179,20 +179,35 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
         }
     }
 
+    course.updateAlphaTabState = function(data) {
+        $scope.$broadcast('videoEvent', data);
+    }
+
     $scope.$on('videoState', function(event, data) {
         if (data == 'prevClicked') {
             console.log('prev clicked');
 
             course.prevCurrentCoursePart();
+
+            course.updateAlphaTabState('stop');
         } else if (data == 'nextClicked') {
             console.log('next clicked!');
 
             course.nextCurrentCoursePart();
+
+            course.updateAlphaTabState('stop');
         } else if (data == 'pause') {
             course.updatePrevNextState();
+
+            course.updateAlphaTabState('pause');
         } else if (data == 'stop') {
             course.updatePrevNextState();
+
+            course.updateAlphaTabState('stop');
+        } else if (data == 'play') {
+            course.updateAlphaTabState('play');
         }
+
     });
 
     course.toggleFullMode = function() {
@@ -200,6 +215,6 @@ app.controller('CourseDetailController', function($rootScope, $scope, $routePara
     }
 
     course.showAlphaTab = function() {
-        return !course.hasImages() && !course.showUnlockedQupu;
+        return !course.hasImages() && !course.showUnlockedQupu && course.hasQupu();
     }
 });
