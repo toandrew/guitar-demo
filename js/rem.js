@@ -6,7 +6,7 @@
 
     function refreshRem() {
         var width = docEl.getBoundingClientRect().width;
-        var rem = width / (750 / 100);
+        var rem = width / (1440 / 100);
         docEl.style.fontSize = rem + 'px';
     }
 
